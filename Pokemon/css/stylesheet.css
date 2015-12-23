@@ -84,7 +84,7 @@
 	
 	#cpu-lvl {
 	    top: 19px;
-	    left: 120px;
+	    left: 115px;
 	    z-index: 1;
 	    font-size: 12px;
 	}
@@ -95,12 +95,26 @@
 	    background-color: #00B200;
 	    z-index: 1;
 	}
-
-#chat-text {
-    width: 338px;
-    top: 263px;
-    left: 22px;
-}
+	
+	#chat-text {
+	    width: 338px;
+	    top: 263px;
+	    left: 22px;
+	}
+	
+	.user-attack-img {
+	    width: 100px;
+	    top: 95px;
+	    right: 57px;
+	    z-index: 1;
+	}
+	
+	.cpu-attack-img {
+	    width: 100px;
+	    top: 185px;
+	    left: 60px;
+	    z-index: 1;
+	}
 	
 	.img-spacing {
 	    float: left;
