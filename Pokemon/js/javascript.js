@@ -99,7 +99,8 @@ var cpuTurn = {
             var setAccuracy = Math.random();
             if (setAccuracy <= currentCPUMove.accuracy) {
                 $("#chat-text").text(cpuPokemon.name + " used " + currentCPUMove.name + "!");
-                getMoveType();
+                showMoveAnimation();
+                setTimeout(getMoveType, 600);
             } else {
                 $("#chat-text").text(cpuPokemon.name + " used " + currentCPUMove.name + " but it missed!");
                 currentState = playerTurn;
@@ -108,11 +109,16 @@ var cpuTurn = {
         };
 
         var getMoveType = function () {
-            showMoveAnimation();
+            //showMoveAnimation();
 
             if (currentCPUMove.type == "Attack") {
                 setTimeout(attackingMove, 1500);
             } else {
+                if (currentCPUMove.name == "Growl"){
+                    $("#chat-text").text(userPokemon.name + "'s attack fell!");
+                } else if (currentCPUMove.name == "Tail Whip") {
+                    $("#chat-text").text(userPokemon.name + "'s defense fell!");
+                }
                 setTimeout(defensiveMove, 1500);
             }
         };
@@ -127,20 +133,34 @@ var cpuTurn = {
                 $("#pikachu-img").animate({top: "-=85"}, 150);
                 $("#collision-img").addClass("cpu-collision-img");
                 $("#collision-img").removeClass("hide");
-                $("#collision-img").fadeIn(1120).fadeOut(220).fadeIn(220).fadeOut(220);
+                $("#collision-img").fadeIn(220).fadeOut(220).fadeIn(220).fadeOut(220);
+                $("#charmander-img").fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120);
             } else if(currentCPUMove.name == "Growl"){
                 $("#pika-growl-img").addClass("cpu-growl-img");
                 $("#pika-growl-img").removeClass("hide");
                 $("#pika-growl-img").fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120);
+                $("#charmander-sword3-img").addClass("user-sword3-img");
+                $("#charmander-sword3-img").removeClass("hide");
+                $("#charmander-sword3-img").fadeIn(150).fadeOut(150).fadeIn(150);
+                $("#charmander-sword3-img").animate({top: "+=45"}, 150);
+                $("#charmander-sword3-img").fadeOut(150).fadeIn(150).fadeOut(150);
+                $("#charmander-sword3-img").animate({top: "-=45"}, 100);
             } else if(currentCPUMove.name == "Tail Whip") {
                 $("#pikachu-img").animate({right: "+=25"}, 150);
                 $("#pikachu-img").animate({right: "-=25"}, 150);
                 $("#pikachu-img").animate({right: "+=25"}, 150);
                 $("#pikachu-img").animate({right: "-=25"}, 150);
+                $("#charmander-shield-img").addClass("user-shield-img");
+                $("#charmander-shield-img").removeClass("hide");
+                $("#charmander-shield-img").fadeIn(150).fadeOut(150).fadeIn(150);
+                $("#charmander-shield-img").animate({top: "+=45"}, 150);
+                $("#charmander-shield-img").fadeOut(150).fadeIn(150).fadeOut(150);
+                $("#charmander-shield-img").animate({top: "-=45"}, 100);
             } else if(currentCPUMove.name = "Thunder Shock"){
                 $("#tshock-img").addClass("cpu-tshock-img1");
                 $("#tshock-img").removeClass("hide");
                 $("#tshock-img").fadeIn(400).fadeOut(400).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120);
+                $("#charmander-img").fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120);
             } 
         }
         
@@ -207,7 +227,8 @@ var playerTurn = {
             
             if (setAccuracy <= currentUserMove.accuracy) {
                 $("#chat-text").text(userPokemon.name + " used " + currentUserMove.name + "!");
-                getMoveType();
+                showMoveAnimation();
+                setTimeout(getMoveType, 600);
             } else {
                 $("#chat-text").text(userPokemon.name + " used " + currentUserMove.name + " but it missed!");
                 currentState = cpuTurn;
@@ -216,11 +237,17 @@ var playerTurn = {
         };
         
         var getMoveType = function () {
-            showMoveAnimation();
+            //showMoveAnimation();
 
             if (currentUserMove.type == "Attack") {
                 setTimeout(attackingMove, 2500);
             } else {
+                if (currentUserMove.name == "Growl") {
+                   $("#chat-text").text(cpuPokemon.name + "'s attack fell!"); 
+                } else if (currentUserMove.name == "Smokescreen") {
+                    $("#chat-text").text(cpuPokemon.name + "'s accuracy fell!"); 
+                }
+                
                 setTimeout(defensiveMove, 2500);
             }
         };
@@ -233,6 +260,7 @@ var playerTurn = {
                 $("#ember-img").animate({right: "+=25"}, 150);
                 $("#ember-img").fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120);
                 $("#ember-img").animate({right: "-=25"}, 150);
+                $("#pikachu-img").fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120);
             } else if (currentUserMove.name == "Scratch") {
                 $("#scratch-img").addClass("user-scratch-img");
                 $("#scratch-img").removeClass("hide");
@@ -240,10 +268,17 @@ var playerTurn = {
                 $("#scratch-img").animate({right: "+=45", top: "+=45"}, 150);
                 $("#scratch-img").fadeOut(120);
                 $("#scratch-img").animate({right: "-=45", top: "-=45"}, 150);
+                $("#pikachu-img").fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120);
             } else if (currentUserMove.name == "Growl") {
                 $("#charmander-growl-img").addClass("user-growl-img");
                 $("#charmander-growl-img").removeClass("hide");
                 $("#charmander-growl-img").fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120);
+                $("#pikachu-sword3-img").addClass("cpu-sword3-img");
+                $("#pikachu-sword3-img").removeClass("hide");
+                $("#pikachu-sword3-img").fadeIn(150).fadeOut(150).fadeIn(150);
+                $("#pikachu-sword3-img").animate({top: "+=45"}, 150);
+                $("#pikachu-sword3-img").fadeOut(150).fadeIn(150).fadeOut(150);
+                $("#pikachu-sword3-img").animate({top: "-=45"}, 100);
             } else if (currentUserMove.name == "Smokescreen") {
                 $("#smoke1-img").addClass("user-smoke1-img");
                 $("#smoke1-img").removeClass("hide");
@@ -251,6 +286,16 @@ var playerTurn = {
                 $("#smoke2-img").addClass("user-smoke2-img");
                 $("#smoke2-img").removeClass("hide");
                 $("#smoke2-img").fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120).fadeIn(120).fadeOut(120);
+                $("#pikachu-ch-img").addClass("cpu-ch-img");
+                $("#pikachu-ch-img").removeClass("hide");
+                $("#pikachu-ch-img").fadeIn(150).fadeOut(150).fadeIn(150);
+                $("#pikachu-ch-img").animate({left: "+=60"}, 150);
+                $("#pikachu-ch-img").fadeOut(150).fadeIn(150);
+                $("#pikachu-ch-img").animate({left: "-=60"}, 100);
+                $("#pikachu-ch-img").fadeOut(150).fadeIn(150);
+                $("#pikachu-ch-img").animate({left: "-=60"}, 100);
+                $("#pikachu-ch-img").fadeOut(150).fadeIn(150).fadeOut(150);
+                $("#pikachu-ch-img").animate({left: "+=60"}, 150);
             }
         };
         
